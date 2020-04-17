@@ -31,25 +31,22 @@
       <HintPath>Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="ColossalManaged">
-      <HintPath>(CitiesSkylinesBinaries)ColossalManaged.dll</HintPath>
+      <HintPath>$(CitiesSkylinesBinaries)ColossalManaged.dll</HintPath>
     </Reference>
     <Reference Include="ICities">
-      <HintPath>(CitiesSkylinesBinaries)ICities.dll</HintPath>
+      <HintPath>$(CitiesSkylinesBinaries)ICities.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>(CitiesSkylinesBinaries)UnityEngine.dll</HintPath>
+      <HintPath>$(CitiesSkylinesBinaries)UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Target Name="CopyResourcesToBuildDirectory" AfterTargets="Build" DependsOnTargets="Build">
-    <PropertyGroup>
-      <CitiesSkylinesBuildDir>D:\Data\SteamLibrary\steamapps\workshop\content\255710\1420955187\</CitiesSkylinesBuildDir>
-    </PropertyGroup>
     <ItemGroup>
       <TranslationFiles Include="$(ProjectDir)Localization\Translations\*.xml" />
       <EventTemplates Include="$(ProjectDir)Events\Templates\*.xml" />
     </ItemGroup>
-    <Message Text="Deploying the mod resources to: $(CitiesSkylinesBuildDir)" Importance="high" />
-    <Copy SourceFiles="@(TranslationFiles)" DestinationFolder="$(CitiesSkylinesBuildDir)Localization" SkipUnchangedFiles="true" />
-    <Copy SourceFiles="@(EventTemplates)" DestinationFolder="$(CitiesSkylinesBuildDir)Events" SkipUnchangedFiles="true" />
+    <Message Text="Deploying the mod resources to: $(OutputPath)" Importance="high" />
+    <Copy SourceFiles="@(TranslationFiles)" DestinationFolder="$(OutputPath)Localization" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(EventTemplates)" DestinationFolder="$(OutputPath)Events" SkipUnchangedFiles="true" />
   </Target>
 </Project>

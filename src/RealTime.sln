@@ -32,7 +32,6 @@ Global
 		{687CE9B5-2E2E-454E-83FC-512250CACF3E}.Benchmark|Any CPU.Build.0 = Debug|Any CPU
 		{687CE9B5-2E2E-454E-83FC-512250CACF3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{687CE9B5-2E2E-454E-83FC-512250CACF3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{687CE9B5-2E2E-454E-83FC-512250CACF3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
