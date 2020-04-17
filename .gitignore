@@ -34,6 +34,3 @@ packages/
 
 #MacOS stuff
 .DS_Store
-
-#diff file to apply changes from original mod
-git.diff

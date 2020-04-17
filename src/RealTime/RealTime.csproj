@@ -41,13 +41,18 @@
       <HintPath>$(CitiesSkylinesBinaries)UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <Target Name="CopyResourcesToBuildDirectory" AfterTargets="Build" DependsOnTargets="Build">
+  <Target Name="Deploy" AfterTargets="Build" DependsOnTargets="Build">
+    <PropertyGroup>
+      <ReleaseDirectory>e:\Documents\Coding\C#\RealTimeOffline\Release\</ReleaseDirectory>
+    </PropertyGroup>
     <ItemGroup>
       <TranslationFiles Include="$(ProjectDir)Localization\Translations\*.xml" />
       <EventTemplates Include="$(ProjectDir)Events\Templates\*.xml" />
+      <TargetBinaries Include="$(OutputPath)*.dll" />
     </ItemGroup>
-    <Message Text="Deploying the mod resources to: $(OutputPath)" Importance="high" />
-    <Copy SourceFiles="@(TranslationFiles)" DestinationFolder="$(OutputPath)Localization" SkipUnchangedFiles="true" />
-    <Copy SourceFiles="@(EventTemplates)" DestinationFolder="$(OutputPath)Events" SkipUnchangedFiles="true" />
+    <Message Text="Deploying the mod to: $(ReleaseDirectory)" Importance="high" />
+    <Copy SourceFiles="@(TranslationFiles)" DestinationFolder="$(ReleaseDirectory)Localization" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(EventTemplates)" DestinationFolder="$(ReleaseDirectory)Events" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(TargetBinaries)" DestinationFolder="$(ReleaseDirectory)" SkipUnchangedFiles="true" />
   </Target>
 </Project>
