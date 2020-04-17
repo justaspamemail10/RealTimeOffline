@@ -43,7 +43,7 @@
   </ItemGroup>
   <Target Name="Deploy" AfterTargets="Build" DependsOnTargets="Build">
     <PropertyGroup>
-      <ReleaseDirectory>e:\Documents\Coding\C#\RealTimeOffline\Release\</ReleaseDirectory>
+      <ReleaseDirectory>e:\Documents\Coding\C#\RealTimeOffline\Mod Release\</ReleaseDirectory>
     </PropertyGroup>
     <ItemGroup>
       <TranslationFiles Include="$(ProjectDir)Localization\Translations\*.xml" />
