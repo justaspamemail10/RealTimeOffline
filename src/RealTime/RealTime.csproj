@@ -1,13 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <AssemblyTitle>RealTime</AssemblyTitle>
-    <Company>dymanoid</Company>
-    <Product>RealTime</Product>
+    <AssemblyTitle>RealTimeOffline</AssemblyTitle>
+    <Company>Metzgermeister</Company>
+    <Product>RealTimeOffline</Product>
     <Description>A mod for the Cities:Skylines game</Description>
     <Copyright>Copyright © 2018-2020, dymanoid</Copyright>
   </PropertyGroup>
   <PropertyGroup>
     <TargetFramework>net35</TargetFramework>
+    <CitiesSkylinesBinaries>D:\Games\Cities Skylines\Cities_Data\Managed\</CitiesSkylinesBinaries>
     <AssemblySearchPaths>
       $(AssemblySearchPaths);
       $(CitiesSkylinesBinaries)
@@ -21,28 +22,34 @@
     <PackageReference Include="SkyTools.Patching" Version="2.1.0" />
     <PackageReference Include="GitVersionTask" Version="5.2.4" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8" />
-    <PackageReference Include="Roslynator.Analyzers" Version="2.3.0"/>
-    <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" Version="1.0.0-beta"/>
+    <PackageReference Include="Roslynator.Analyzers" Version="2.3.0" />
+    <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" Version="1.0.0-beta" />
     <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.164" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Assembly-CSharp" />
-    <Reference Include="ColossalManaged" />
-    <Reference Include="ICities" />
-    <Reference Include="UnityEngine" />
+    <Reference Include="Assembly-CSharp">
+      <HintPath>Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="ColossalManaged">
+      <HintPath>(CitiesSkylinesBinaries)ColossalManaged.dll</HintPath>
+    </Reference>
+    <Reference Include="ICities">
+      <HintPath>(CitiesSkylinesBinaries)ICities.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>(CitiesSkylinesBinaries)UnityEngine.dll</HintPath>
+    </Reference>
   </ItemGroup>
-  <Target Name="DeployToModsDirectory" AfterTargets="Build" DependsOnTargets="Build">
+  <Target Name="CopyResourcesToBuildDirectory" AfterTargets="Build" DependsOnTargets="Build">
     <PropertyGroup>
-      <CitiesSkylinesModDir>D:\Data\SteamLibrary\steamapps\workshop\content\255710\1420955187\</CitiesSkylinesModDir>
+      <CitiesSkylinesBuildDir>D:\Data\SteamLibrary\steamapps\workshop\content\255710\1420955187\</CitiesSkylinesBuildDir>
     </PropertyGroup>
     <ItemGroup>
       <TranslationFiles Include="$(ProjectDir)Localization\Translations\*.xml" />
       <EventTemplates Include="$(ProjectDir)Events\Templates\*.xml" />
-      <TargetBinaries Include="$(OutputPath)*.dll" />
     </ItemGroup>
-    <Message Text="Deploying the mod package to: $(CitiesSkylinesModDir)" Importance="high" />
-    <Copy SourceFiles="@(TranslationFiles)" DestinationFolder="$(CitiesSkylinesModDir)Localization" SkipUnchangedFiles="true" />
-    <Copy SourceFiles="@(EventTemplates)" DestinationFolder="$(CitiesSkylinesModDir)Events" SkipUnchangedFiles="true" />
-    <Copy SourceFiles="@(TargetBinaries)" DestinationFolder="$(CitiesSkylinesModDir)" SkipUnchangedFiles="true" />
+    <Message Text="Deploying the mod resources to: $(CitiesSkylinesBuildDir)" Importance="high" />
+    <Copy SourceFiles="@(TranslationFiles)" DestinationFolder="$(CitiesSkylinesBuildDir)Localization" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(EventTemplates)" DestinationFolder="$(CitiesSkylinesBuildDir)Events" SkipUnchangedFiles="true" />
   </Target>
 </Project>

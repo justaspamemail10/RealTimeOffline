@@ -26,7 +26,7 @@ namespace RealTime.Core
             ExportElectricity,
             DistrictServiceLimit,
             DateChanger,
-            RealTimeOffline,
+            RealTime,
         };
 
         private readonly ILocalizationProvider localizationProvider;
@@ -106,7 +106,19 @@ namespace RealTime.Core
             activeMods.Clear();
             foreach (var plugin in PluginManager.instance.GetPluginsInfo().Where(m => m.isEnabled))
             {
-                activeMods[plugin.publishedFileID.AsUInt64] = plugin;
+                ulong nameUInt64;
+                try
+                {
+                    nameUInt64 = Convert.ToUInt64(plugin.name);
+                }
+                catch (FormatException)
+                {
+                    DebugOutputPanel.AddMessage(PluginManager.MessageType.Message, $"Real Time Offline: {plugin?.name} was skipped from compatibility checking.\n" +
+                                                                                   $"Rename the containing directory to respective Workshop ID to include it in compatibility checking by Real Time Offline.");
+                    break;
+                }
+
+                activeMods[nameUInt64] = plugin;
             }
         }
     }

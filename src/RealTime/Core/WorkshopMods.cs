@@ -45,13 +45,22 @@ namespace RealTime.Core
         /// <summary>The Workshop ID of the 'Date Changer' mod.</summary>
         public const ulong DateChanger = 1729576238ul;
 
-        /// <summary>The Workshop ID of the 'Real Time Offline' mod.</summary>
-        public const ulong RealTimeOffline = 1749971558ul;
-
         /// <summary>The Workshop ID of the 'Ploppable RICO Revisited' mod.</summary>
         public const ulong PloppableRicoRevisited = 2016920607ul;
 
         /// <summary>The Workshop ID of the 'Lifecycle Rebalance Revisited' mod.</summary>
         public const ulong LifecycleRebalanceRevisited = 2027161563ul;
+
+        /// <summary>The Workshop ID of the 'Time Warp' mod.</summary>
+        public const ulong TimeWarpWorkshopId = 814698320ul;
+
+        /// <summary>The Workshop ID of the 'Ultimate Eyecandy' mod.</summary>
+        public const ulong UltimateEyecandyWorkshopId = 672248733ul;
+
+        /// <summary>The Workshop ID of the 'Real Time' mod.</summary>
+        public const ulong RealTime = 1420955187ul;
+
+        /// <summary>The Workshop ID of the 'Real Time Offline' mod.</summary>
+        public const ulong RealTimeOffline = 1749971558ul;
     }
 }

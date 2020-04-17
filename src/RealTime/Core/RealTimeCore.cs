@@ -7,6 +7,7 @@ namespace RealTime.Core
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using ColossalFramework.Plugins;
     using RealTime.Config;
     using RealTime.CustomAI;
     using RealTime.Events;
@@ -329,6 +330,7 @@ namespace RealTime.Core
             if (compatibility.IsAnyModActive(WorkshopMods.CitizenLifecycleRebalance, WorkshopMods.LifecycleRebalanceRevisited))
             {
                 Log.Info("The 'Real Time' mod will not change the citizens aging because a 'Lifecycle Rebalance' mod is active.");
+                DebugOutputPanel.AddMessage(PluginManager.MessageType.Message, "Real Time Offline: Aging compatibility enabled.");
             }
             else
             {
@@ -347,6 +349,7 @@ namespace RealTime.Core
                 WorkshopMods.PlopTheGrowables))
             {
                 Log.Info("The 'Real Time' mod will not change the building construction and upgrading behavior because some building mod is active.");
+                DebugOutputPanel.AddMessage(PluginManager.MessageType.Message, "Real Time Offline: Construction compatibility enabled.");
             }
             else
             {
@@ -388,9 +391,12 @@ namespace RealTime.Core
                 return false;
             }
 
-            float travelDistancePerCycle = compatibility.IsAnyModActive(WorkshopMods.RealisticWalkingSpeed)
-                ? Constants.AverageTravelDistancePerCycle * 0.583f
-                : Constants.AverageTravelDistancePerCycle;
+            float travelDistancePerCycle = Constants.AverageTravelDistancePerCycle;
+            if (compatibility.IsAnyModActive(WorkshopMods.RealisticWalkingSpeed))
+            {
+                DebugOutputPanel.AddMessage(PluginManager.MessageType.Message, "Real Time Offline: Walking compatibility enabled.");
+                travelDistancePerCycle *= 0.583f;
+            }
 
             var spareTimeBehavior = new SpareTimeBehavior(config, timeInfo);
             var travelBehavior = new TravelBehavior(gameConnections.BuildingManager, travelDistancePerCycle);
