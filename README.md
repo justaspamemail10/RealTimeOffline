@@ -17,4 +17,4 @@ I included dymanoid's licence and kept any copyright mentions as this is mostly 
 # Future updates
 No future updates are guaranteed, but I will do what I can.
 
-Use Issues to request merging updates from original mod. For any other changes contact dymanoid.
+Use Issues to report bugs related to this fork and to request merging updates from original mod. For any other changes contact dymanoid.
