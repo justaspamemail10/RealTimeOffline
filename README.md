@@ -1,7 +1,9 @@
 # Real Time Offline
 Offline version of RealTime mod for Cities Skylines. Originally created by dymanoid, this is continuation of Gness Erquint's offline modification.
 
-For information about the mod, please refer to the mods' sites on Steam Workshop:
+Check out this mod's [page on Nexus](https://www.nexusmods.com/citiesskylines/mods/10) for more information and discussions.
+
+For additional information about the mod - what it does and how to install/fix errors, please refer to those mods on Steam Workshop:
 
 [Real Time by dymanoid](https://steamcommunity.com/sharedfiles/filedetails/?id=1420955187)
 
