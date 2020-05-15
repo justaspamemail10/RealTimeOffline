@@ -41,10 +41,12 @@
       <HintPath>$(CitiesSkylinesBinaries)UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <PropertyGroup>
+    <SolutionDirectory>e:\Documents\Coding\C#\RealTimeOffline\</SolutionDirectory>
+    <ReleaseDirectory>$(SolutionDirectory)Mod Release\</ReleaseDirectory>
+    <TempZipPath>$(SolutionDirectory)Mod Release.zip</TempZipPath>
+  </PropertyGroup>
   <Target Name="Deploy" AfterTargets="Build" DependsOnTargets="Build">
-    <PropertyGroup>
-      <ReleaseDirectory>e:\Documents\Coding\C#\RealTimeOffline\Mod Release\</ReleaseDirectory>
-    </PropertyGroup>
     <ItemGroup>
       <TranslationFiles Include="$(ProjectDir)Localization\Translations\*.xml" />
       <EventTemplates Include="$(ProjectDir)Events\Templates\*.xml" />
@@ -54,5 +56,11 @@
     <Copy SourceFiles="@(TranslationFiles)" DestinationFolder="$(ReleaseDirectory)Localization" SkipUnchangedFiles="true" />
     <Copy SourceFiles="@(EventTemplates)" DestinationFolder="$(ReleaseDirectory)Events" SkipUnchangedFiles="true" />
     <Copy SourceFiles="@(TargetBinaries)" DestinationFolder="$(ReleaseDirectory)" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="ArchiveRelease" AfterTargets="Deploy" DependsOnTargets="Deploy">
+    <Delete Files="$(ReleaseDirectory)Mod Release.zip" />
+    <ZipDirectory SourceDirectory="$(ReleaseDirectory)" DestinationFile="$(TempZipPath)"></ZipDirectory>
+    <Copy SourceFiles="$(TempZipPath)" DestinationFolder="$(ReleaseDirectory)" />
+    <Delete Files="$(TempZipPath)" />
   </Target>
 </Project>
